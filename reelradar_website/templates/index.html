@@ -1,0 +1,68 @@
+{% extends 'base.html' %}  <!-- This code extends from base.html, which is your base template file -->
+
+{% block content %}  <!-- The content block is where you put the content that you want to insert into the base template -->
+
+{% load static %}  <!-- This line is required to use Django's static file handling -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reel Radar</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">  <!-- Link to your external CSS file. If you change the filename or location of the CSS file, update this. -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">  <!-- Link to the jQuery UI CSS file from a CDN. If you want to use a different version, update this. -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>  <!-- Link to the jQuery library from a CDN. If you want to use a different version, update this. -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>  <!-- Link to the jQuery UI library from a CDN. If you want to use a different version, update this. -->
+
+    <!-- This script sets up the autocomplete function. -->
+    <script>
+    $( function() {
+        function log( message ) {
+          $( "<div>" ).text( message ).prependTo( "#log" );
+          $( "#log" ).scrollTop( 0 );
+        }
+
+        /* This function sets up autocomplete for the elements with IDs movie1, movie2, and movie3.
+        * If you want to add autocomplete to more elements, add their IDs to the list.
+        * Replace "search.php" with the URL of your autocomplete data source.
+        * The minLength option specifies how many characters the user has to type before autocomplete suggestions are shown.
+        * Change this if you want to show suggestions after a different number of characters.
+        */
+        $( "#movie1, #movie2, #movie3" ).autocomplete({
+          source: "/search_movies/",  // replace with your remote datasource url
+          minLength: 2,
+          select: function( event, ui ) {
+
+          }
+        });
+      } );
+    </script>
+</head>
+<body>
+    <div id="content">
+        <div id="github-handle" style="cursor:pointer">@matteo353</div>
+        <h1>Reel Radar</h1>
+        <p>Baking new movie recipes from your favorite film ingredients.</p>
+        <form action="Recommendations" method="post">  <!-- When the form is submitted, it will send a POST request to the "Recommendations" URL. Update this if your URL changes. -->
+            {% csrf_token %}  <!-- This is required for security reasons. Don't remove it. -->
+            <!-- These input fields accept the movie titles. If you want to add more input fields, add them here. -->
+            <input type="text" id="movie1" name="movie1" placeholder="Enter movie title">
+            <input type="text" id="movie2" name="movie2" placeholder="Enter movie title">
+            <input type="text" id="movie3" name="movie3" placeholder="Enter movie title">
+            <input type="submit" value="Search movies">  <!-- This button submits the form. -->
+        </form>
+        <!-- This div will contain the log of the autocomplete selections. If you want to change its appearance, update the inline CSS. -->
+        <div id="log" style="height: 200px; width: 300px; overflow: auto;"></div>
+    </div>
+    <script>
+        document.getElementById("github-handle").onclick = function () {
+            window.open('https://github.com/matteo353', '_blank');
+        };
+    </script>
+</body>
+
+
+
+</html>
+
+{% endblock %}

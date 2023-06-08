@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+body {
+    font-family: 'Bebas Neue', cursive;
+    margin: 0;
+    padding: 0;
+    background: #41b3a3;
+    color: #05386B; /* Change color to match the title */
+    height: 100vh;
+    display: flex;
+    justify-content: space-between; /* Changed to center to center the title between top and search boxes */
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#content {
+    width: 80%;
+    text-align: center;
+}
+#github-handle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.6em;
+    color: #EDF5E1; /* You can change this to match your website's color scheme */
+}
+
+#again-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2em;
+    color: #05386B; /* You can change this to match your website's color scheme */
+}
+
+h1 {
+    color: #EDF5E1;
+    font-size: 10em;
+    text-decoration: none;
+    text-shadow: -1px -1px 0 #67d6e5, 1px -1px 0 #23b1cb, -1px 1px 0 #206ee0, 1px 1px 0 #0229a9;
+    transform: rotateY(20deg);
+    margin-bottom: 0.5em;
+    position: relative;
+    top: 60px; /* adjust this value as necessary */
+}
+
+p {
+    font-size: 3em; /* Increased font size to 1.5 times */
+    text-shadow: rgba(0, 0, 0, 0.87);
+    margin-bottom: 2em;
+    color: #05386B; /* Changed color to match the title */
+}
+
+form {
+    margin-top: 1em;
+    order: -1;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    font-family: 'Bebas Neue', cursive;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.5em;
+    color: rgba(10, 3, 23, 0.71); /* Changed color to black */
+}
+
+input[type="text"]::placeholder {
+    font-family: 'Bebas Neue', cursive;
+    color: rgba(10, 3, 23, 0.71);
+}
+
+input[type="submit"] {
+    width: 30%;
+    font-family: 'Bebas Neue', cursive;
+    background-color: #edf5e1;
+    color: #41b3a3;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.65em;
+}
+
+input[type="submit"]:hover {
+    background-color: #05386B;
+}
+
+.centered-title a,
+.centered-title a:link,
+.centered-title a:visited,
+.centered-title a:hover,
+.centered-title a:active {
+    text-align: center;
+    text-decoration: none;
+    font-size: 8em;
+    color: #edf5e1;
+    margin-top: -100px;
+}
+
+.selected-movies h2, .recommended-movies h2 {
+    font-size: 4.5em; /* Increase the font size to make the titles larger */
+}
+
+.selected-movies ul, .recommended-movies ul {
+    list-style-type: none; /* This removes the bullets or numbers */
+    padding-left: 0;
+    font-size: 2em; /* Decrease the font size to make the movies list smaller */
+    margin-top: -30px;
+
+}
+
+.movie-container {
+    display: flex;
+    justify-content: space-around; /* To evenly distribute the movie lists */
+    flex-direction: row;
+    align-items: flex-start; /* To vertically center align the lists */
+    padding: 10px 90px;
+    height: calc(100vh - 15em); /* Subtract the space taken by the h1 title */
+    margin-top: -45px;
+}
+

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="content">
+        <div id="again-button" style="cursor:pointer">again!</div>
+        <div id="title" style="cursor:pointer">
+            <h1 class="centered-title">Reel Radar</h1>
+        </div>
+    <script>
+        document.getElementById("title").onclick = function () {
+            location.href = "{% url 'home' %}";
+          };
+        </script>
+        <script>
+        document.getElementById("again-button").onclick = function () {
+            location.href = "{% url 'home' %}";
+          };
+        </script>
+
+        <div class="movie-container">
+            <div class="selected-movies">
+                <h2>Your Selections</h2> <!-- Change the title to 'Your Selections' -->
+                <ul>
+                    <li>{{ result1 }}</li>
+                    <li>{{ result2 }}</li>
+                    <li>{{ result3 }}</li>
+                </ul>
+            </div>
+            <div class="recommended-movies">
+                <h2>Recommended Movies</h2>
+                <ul>
+                    <li>{{ rec1 }}</li>
+                    <li>{{ rec2 }}</li>
+                    <li>{{ rec3 }}</li>
+                    <li>{{ rec4 }}</li>
+                    <li>{{ rec5 }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
