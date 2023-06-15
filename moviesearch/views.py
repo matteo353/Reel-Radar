@@ -4,11 +4,32 @@ from django.http import HttpResponse
 import numpy as np
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.core.cache import cache
+import boto3
+from io import BytesIO
+from django.conf import settings
 
 # Create your views here.
 
 def home(request):
     return render(request, 'index.html')
+
+# Function to update the cache by accessing the similarity matrix stored in AWS S3
+def get_similarity_matrix():
+    matrix = cache.get('similarity_matrix')
+
+    if matrix is None:
+        s3 = boto3.client('s3',
+                          aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
+                          aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY)
+        obj = s3.get_object(Bucket='reel-radar', Key='similarity_matrix.npy')
+        matrix = np.load(BytesIO(obj['Body'].read()), allow_pickle=True)
+
+        # Store the file in cache for future use
+        cache.set('similarity_matrix', matrix)
+
+    return matrix
+
 
 def recommend(request):
     movie1 = request.POST['movie1']
@@ -33,6 +54,9 @@ def recommend(request):
     movie1 = fetched_movies[0]
     movie2 = fetched_movies[1]
     movie3 = fetched_movies[2]
+
+    # Un-comment if fetching from the cloud
+    # similarity_matrix = get_similarity_matrix()
 
     # Load cosine similarity matrix
     similarity_matrix = np.load('similarity_matrix.npy')
